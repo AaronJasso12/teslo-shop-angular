@@ -1,59 +1,202 @@
-# TelsoShop
+# 🛍️ Teslo - Shop
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.2.
+Aplicación web de comercio electrónico desarrollada con Angular. Permite explorar un catálogo de productos, consultar sus detalles y gestionar productos mediante un panel administrativo. Se integra con una API REST desarrollada con NestJS.
 
-## Development server
+## ✨ Características
 
-To start a local development server, run:
+### 🛍️ Catálogo de productos
+- Visualización del catálogo de productos.
+- Exploración de productos por categorías de género.
+- Consulta de los detalles de cada producto.
+- Navegación entre productos mediante paginación.
+- Carrusel de productos relacionados.
+
+### 🔐 Autenticación
+- Inicio de sesión y registro de usuarios.
+- Formularios reactivos con validaciones.
+- Opción para mostrar u ocultar la contraseña.
+- Gestión del estado de autenticación.
+- Protección de rutas mediante guards.
+- Interceptor HTTP para gestionar solicitudes de autenticación.
+
+### ⚙️ Administración de productos
+- Visualización de productos en una tabla administrativa.
+- Creación de nuevos productos.
+- Edición de productos existentes.
+- Carga de imágenes para los productos.
+- Gestión de tallas, etiquetas, existencias y precios.
+- Restricción del acceso administrativo según los roles de usuario.
+
+### 🚀 Arquitectura y funcionalidades técnicas
+- Componentes standalone.
+- Angular Signals para la gestión reactiva del estado.
+- `rxResource` para la carga de datos asíncronos.
+- Carga diferida de rutas (*lazy loading*).
+- Componentes y servicios reutilizables.
+- Integración con una API REST mediante HTTP.
+- Caché en memoria para datos de productos.
+
+## 🛠️ Tecnologías utilizadas
+
+| Tecnología | Uso |
+|---|---|
+| Angular 22 | Framework para el desarrollo del frontend |
+| TypeScript | Lenguaje de programación |
+| RxJS | Programación reactiva y manejo de operaciones asíncronas |
+| Tailwind CSS 4 | Estilos mediante clases de utilidad |
+| DaisyUI 5 | Componentes de interfaz y temas |
+| Swiper | Carruseles de productos |
+| Angular Reactive Forms | Gestión y validación de formularios |
+| Angular Router | Navegación y protección de rutas |
+| NestJS | Backend y API REST |
+| PostgreSQL | Base de datos del backend |
+
+## 📋 Requisitos previos
+
+Antes de ejecutar el proyecto, necesitas tener instalado:
+
+- [Node.js](https://nodejs.org/)
+- npm, incluido con Node.js.
+- Git.
+- Una instancia funcional del backend de Teslo - Shop.
+
+Puedes comprobar las versiones instaladas con los siguientes comandos:
 
 ```bash
-ng serve
+node -v
+npm -v
+git --version
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 🚀 Instalación y ejecución
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 1. Clonar el repositorio
 
 ```bash
-ng generate component component-name
+git clone https://github.com/AaronJasso12/teslo-shop-angular.git
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Entra en la carpeta del proyecto:
 
 ```bash
-ng generate --help
+cd teslo-shop-angular
 ```
 
-## Building
-
-To build the project run:
+### 2. Instalar las dependencias
 
 ```bash
-ng build
+npm install
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### 3. Configurar la URL de la API
 
-## Running unit tests
+El proyecto utiliza archivos de entorno para configurar la dirección del backend.
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Para el entorno de desarrollo, revisa:
+
+`src/environments/environment.development.ts`
+
+Ejemplo de configuración:
+
+```typescript
+export const environment = {
+  baseUrl: 'http://localhost:3000/api'
+};
+```
+
+Asegúrate de que la URL coincida con la dirección y el prefijo de la API de NestJS.
+
+Para producción, revisa el archivo:
+
+`src/environments/environment.ts`
+
+Actualiza `baseUrl` con la URL pública del backend cuando lo despliegues.
+
+**Importante:** no incluyas contraseñas, tokens ni otras credenciales privadas en los archivos que publiques en GitHub.
+
+### 4. Ejecutar el servidor de desarrollo
 
 ```bash
-ng test
+npm start
 ```
 
-## Running end-to-end tests
+Abre la aplicación en tu navegador:
 
-For end-to-end (e2e) testing, run:
+http://localhost:4200/
+
+La aplicación se actualizará automáticamente cuando realices cambios en el código fuente.
+
+## 🏗️ Compilación para producción
+
+Para generar una compilación de producción, ejecuta:
 
 ```bash
-ng e2e
+npm run build
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Los archivos generados se guardarán dentro del directorio de salida configurado por Angular, normalmente bajo `dist/`.
 
-## Additional Resources
+## 🧪 Pruebas
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Para ejecutar las pruebas del proyecto:
+
+```bash
+npm test
+```
+
+El proyecto utiliza Vitest como herramienta para ejecutar pruebas.
+
+## 📁 Estructura del proyecto
+
+```text
+src/
+├── app/
+│   ├── admin-dashboard/  # Panel administrativo
+│   ├── auth/             # Autenticación, guards y servicios
+│   ├── products/         # Componentes, interfaces y servicios de productos
+│   ├── shared/           # Componentes compartidos y utilidades
+│   ├── store-front/      # Páginas, diseños y navegación de la tienda
+│   ├── app.config.ts     # Configuración de la aplicación
+│   └── app.routes.ts     # Rutas principales
+├── environments/         # Configuración de entornos
+└── styles.css            # Estilos globales
+
+public/
+└── assets/               # Recursos estáticos, imágenes y fuentes
+```
+
+## 🔌 Integración con el backend
+
+El frontend se comunica con una API REST desarrollada con NestJS para gestionar la autenticación, consultar productos, administrar el catálogo y realizar operaciones relacionadas con las imágenes.
+
+La base de datos PostgreSQL es utilizada por el backend para almacenar la información de la aplicación.
+
+El backend debe estar disponible para que funcionen las características que dependen de la API.
+
+## 📸 Capturas de pantalla
+
+### 🏠 Página principal
+
+Catálogo de productos con navegación por categorías y tarjetas de productos.
+
+![Página principal de Teslo - Shop](screenshots/home.png)
+
+### 👕 Detalle del producto
+
+Vista detallada con galería de imágenes, nombre y descripción del producto.
+
+![Detalle del producto](screenshots/product-detail.png)
+
+### ⚙️ Panel de administración
+
+Interfaz administrativa para consultar el catálogo, visualizar precios y existencias, y acceder a las opciones de gestión de productos.
+
+![Panel de administración](screenshots/admin-dashboard.png)
+
+## 🎯 Objetivo del proyecto
+
+Este proyecto tiene como objetivo practicar el desarrollo de aplicaciones web modernas con Angular, aplicando componentes standalone, Signals, formularios reactivos, protección de rutas, servicios reutilizables e integración con una API REST.
+
+## 👨‍💻 Autor
+
+Proyecto desarrollado con fines de aprendizaje y práctica de desarrollo frontend con Angular e integración con NestJS.
