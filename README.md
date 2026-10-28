@@ -2,6 +2,20 @@
 
 Aplicación web de comercio electrónico desarrollada con Angular. Permite explorar un catálogo de productos, consultar sus detalles y gestionar productos mediante un panel administrativo. Se integra con una API REST desarrollada con NestJS.
 
+## 🚀 Demo
+
+🌐 **[Ver Teslo - Shop en Netlify](https://teslo-shop-front-web.netlify.app/#/)**
+
+## 🔑 Credenciales de demostración
+
+Puedes registrarte para explorar la tienda como usuario normal o utilizar la cuenta de demostración para probar el panel administrativo.
+
+Administrador
+Correo: test1@google.com
+Contraseña: Abc123
+
+Cuenta destinada exclusivamente a demostraciones del proyecto. No debe utilizarse para información personal o sensible.
+
 ## ✨ Características
 
 ### 🛍️ Catálogo de productos

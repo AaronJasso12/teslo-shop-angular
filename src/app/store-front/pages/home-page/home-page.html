@@ -1,17 +1,26 @@
 <h1 class="text-3xl font-bold font-montserrat">Todos los productos</h1>
 <h2 class="text-xl mb-5">Para todos los gustos</h2>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-2 gap-3">
-  <!-- product-card -->
-  @for (product of productsResorce.value()?.products; track product.id) {
-    <product-card
-    [product]="product"
-    />
-  }
-  @empty{
-    <p>No hay productos</p>
-  }
-</div>
+@if (productsResorce.isLoading()) {
+  <div class="flex flex-col justify-center items-center">
+    <span class="loading loading-dots loading-lg"></span>
+    Cargando productos
+  </div>
+}
+<!--  -->
+@else {
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-2 gap-3">
+    <!-- product-card -->
+    @for (product of productsResorce.value()?.products; track product.id) {
+      <product-card
+      [product]="product"
+      />
+    }
+    @empty{
+      <p>No hay productos</p>
+    }
+  </div>
+}
 
 <app-pagination
   [pages]="productsResorce.value()?.pages ?? 0"

@@ -22,6 +22,7 @@ export class ProductDetails implements OnInit{
   productSrv = inject(ProductService);
   wasSaved = signal(false);
   tempImages = signal<string[]>([]);
+  isLoading = signal(false);
 
   imageFileList: FileList | undefined = undefined;
 
@@ -71,6 +72,7 @@ export class ProductDetails implements OnInit{
     this.productForm.markAllAsTouched();
     if (!isValid) return;
 
+    this.isLoading.set(true);
     const formValue = this.productForm.value;
     const productLike: Partial<Product> = {
       ...(formValue as any),
@@ -92,6 +94,7 @@ export class ProductDetails implements OnInit{
       );
     }
 
+    this.isLoading.set(false);
     this.wasSaved.set(true);
     setTimeout(() => {
       this.wasSaved.set(false);

@@ -29,5 +29,14 @@
   </button>
 </div>
 
-<!-- Listado -->
-<product-table [products]="productsResource.value()?.products ?? []" />
+@if (productsResource.isLoading()) {
+  <div class="flex flex-col justify-center items-center">
+    <span class="loading loading-dots loading-lg"></span>
+    Cargando productos
+  </div>
+}
+<!--  -->
+@else {
+  <!-- Listado -->
+  <product-table [products]="productsResource.value()?.products ?? []" />
+}

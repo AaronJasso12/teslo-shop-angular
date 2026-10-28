@@ -1,6 +1,6 @@
 
 import { Component, computed, inject } from '@angular/core';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterOutlet, RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { AuthService } from '@auth/services/auth-service';
 
 @Component({
@@ -9,7 +9,13 @@ import { AuthService } from '@auth/services/auth-service';
   templateUrl: './admin-dashboard-layout.html',
 })
 export class AdminDashboardLayout {
-  authSrv = inject(AuthService);
+  private router = inject(Router);
+  private authSrv = inject(AuthService);
 
   user = computed(() => this.authSrv.user());
+
+  logout() {
+    this.authSrv.logout();
+    this.router.navigate(['/']);
+  }
 }
